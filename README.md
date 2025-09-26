@@ -15,4 +15,4 @@ docker run --rm -p 8080:80 --name arena-front arena-front-poc:latest
 Ouvre <http://localhost:8080> puis clique sur le bouton.
 
 ## CI/CD et déploiement
-Consulte `docs/ci-cd.md` pour la stratégie GitHub Actions et le déploiement sur la VM.
+Workflow GitHub Actions disponible dans `.github/workflows/deploy.yml` : build & push de l'image sur GHCR, redéploiement automatique du conteneur Nginx sur ta VM.
