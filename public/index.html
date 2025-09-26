@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>POC Arena Front</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Arial, sans-serif; margin: 2rem; }
+    button { padding: 0.6rem 1rem; border-radius: 0.5rem; border: 1px solid #ccc; cursor: pointer; }
+    #out { margin-top: 1rem; font-size: 1.25rem; }
+  </style>
+</head>
+<body>
+  <h1>POC Arena Front</h1>
+  <p>Clique pour appeler l’API backend.</p>
+  <button id="btn">Appeler /hello</button>
+  <div id="out">Réponse : <em>(en attente)</em></div>
+
+  <script>
+    const btn = document.getElementById('btn');
+    const out = document.getElementById('out');
+    // Suppose que le backend écoute sur le même hôte, port 8000
+    const apiBase = `http://${location.hostname}:8000`;
+
+    btn.addEventListener('click', async () => {
+      out.textContent = 'Réponse : (appel en cours…)';
+      try {
+        const r = await fetch(`${apiBase}/hello`);
+        const txt = await r.text();
+        out.textContent = 'Réponse : ' + txt;
+      } catch (e) {
+        out.textContent = 'Erreur : ' + (e?.message || e);
+      }
+    });
+  </script>
+</body>
+</html>
